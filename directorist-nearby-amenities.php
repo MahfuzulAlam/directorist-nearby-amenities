@@ -79,6 +79,7 @@ if (!class_exists('Directorist_Nearby_Amenities')) {
         public function includes()
         {
             include_once(DIRECTORIST_NEARBY_AMENITIES_DIR . '/inc/functions.php');
+            include_once(DIRECTORIST_NEARBY_AMENITIES_DIR . '/inc/class-custom-field.php');
         }
 
         /**

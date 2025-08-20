@@ -26,7 +26,7 @@ if (! class_exists('DRA_Custom_Field')):
         public function __construct()
         {
             //add_filter('atbdp_form_preset_widgets', [$this, 'register_custom_field']);
-            add_filter('atbdp_single_listing_content_widgets', [$this, 'single_listing_content_widgets']);
+            add_filter('atbdp_single_listing_other_fields_widget', [$this, 'single_listing_content_widgets']);
             //add_filter('directorist_field_template', [$this, 'directorist_field_template'], 10, 2);
             add_filter('directorist_single_item_template', [$this, 'directorist_single_item_template'], 10, 2);
         }
@@ -37,14 +37,26 @@ if (! class_exists('DRA_Custom_Field')):
         public function single_listing_content_widgets($widgets)
         {
             $widgets['nearby_amenities'] = [
-                'label'   => __('nearby_amenities', 'directorist-nearby-amenities'),
-                'options' => [
-                    'icon' => [
+                'label'   => __('Nearby Amenities', 'directorist-nearby-amenities'),
+                'icon' => 'la la-map',
+                'options'       => [
+                    'label'   => [
+                        'type'  => 'text',
+                        'label' => __('Label', 'directorist-nearby-amenities'),
+                        'value' => '',
+                    ],
+                    'icon'    => [
                         'type'  => 'icon',
-                        'label' => 'Icon',
+                        'label' => __('Icon', 'directorist-nearby-amenities'),
                         'value' => 'la la-map',
                     ],
-                ]
+                    'content' => [
+                        'type'        => 'textarea',
+                        'label'       => __('Content', 'directorist-nearby-amenities'),
+                        'value'       => '',
+                        'description' => __('You can type the amenity types', 'directorist-nearby-amenities'),
+                    ],
+                ],
             ];
             return $widgets;
         }
@@ -55,9 +67,9 @@ if (! class_exists('DRA_Custom_Field')):
         public function directorist_single_item_template($template, $field_data)
         {
             if ($field_data['widget_name'] == 'nearby_amenities') {
-                $addresses = isset($field_data['value']) && !empty($field_data['value']) ? json_decode($field_data['value'], true) : [];
-                if( count( $addresses ) > 0 ){
-                    $template .= $this->load_template('templates/single-listing', ['data' => $field_data, 'addresses'=> $addresses]);
+                $address = get_post_meta( $field_data['listing_id'], '_address', true );
+                if ( $address ) {
+                    $template .= $this->load_template('templates/single-listing', ['data' => $field_data, 'address' => $address]);
                 }
             }
 
@@ -88,7 +100,6 @@ if (! class_exists('DRA_Custom_Field')):
                 include $file;
             }
         }
-
     }
 
     new DRA_Custom_Field();
