@@ -16,6 +16,9 @@ function dna_generate_nearby_amenities( $amenity_args = [] ) {
     $nearby_amenities_title = $amenity_args['nearby_amenities_title'];
     $max_amenities = $amenity_args['max_amenities'];
 
+    $distance_found = 0;
+    $amenity_found = 0;
+
     // Explode the distances and amenities by comma, check if the array is not empty
     if (!empty($distances)) {
         $distances = explode(',', $distances);
@@ -42,6 +45,7 @@ function dna_generate_nearby_amenities( $amenity_args = [] ) {
                             $places = dna_get_nearby_places($lat, $lng, $type, $apiKey, $radius);
                             $i = 0;
                             if (!empty($places)) {
+                                $distance_found ++;
                                 foreach ($places as $place) {
                                     if ($i >= $max_amenities) {
                                         break;
@@ -78,9 +82,15 @@ function dna_generate_nearby_amenities( $amenity_args = [] ) {
                         ?>
                     <?php endif; ?>
                 <?php endforeach; ?>
+                <?php if($distance_found == 0): ?>
+                    <div class="dna-no-results-found">
+                        <span class="dna-amenity-text"><?php echo esc_html("No nearby places found"); ?></span>
+                    </div>
+                <?php endif; ?>
             </div>
         </div>
         <?php endif; ?>
+
         <?php if(!empty($amenities)): ?>    
         <div class="dna-section dna-section--amenities">
             <h4 class="dna-section-title amenities-title"><?php echo esc_html($nearby_amenities_title); ?></h4>
@@ -90,7 +100,8 @@ function dna_generate_nearby_amenities( $amenity_args = [] ) {
                         <?php
                             $places = dna_get_nearby_places($lat, $lng, $type, $apiKey, $radius);
                             $i = 0;
-                            if (!empty($places)) :
+                            if (!empty($places)) {
+                                $amenity_found ++;
                                 foreach ($places as $place) {
                                     if ($i >= $max_amenities) {
                                         break;
@@ -103,10 +114,15 @@ function dna_generate_nearby_amenities( $amenity_args = [] ) {
                                     <?php
                                     $i++;
                                 }
-                            endif;
+                            }
                         ?>
                     <?php endif; ?>
                 <?php endforeach; ?>
+                <?php if($amenity_found == 0): ?>
+                    <div class="dna-no-results-found">
+                        <span class="dna-amenity-text"><?php echo esc_html("No nearby amenities found"); ?></span>
+                    </div>
+                <?php endif; ?>
             </div>
         </div>
         <?php endif; ?>

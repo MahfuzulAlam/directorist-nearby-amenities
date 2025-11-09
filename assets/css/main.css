@@ -238,6 +238,21 @@
 }
 
 /* ============================================
+   No Results Found Styles
+   ============================================ */
+.dna-no-results-found {
+  text-align: flex-start;
+  font-size: 15px;
+  color: #1c2a3a;
+  line-height: 1.5;
+}
+
+.dna-no-results-found .dna-amenity-text {
+  flex: 1;
+  word-wrap: break-word;
+}
+
+/* ============================================
    Icon Color Overrides (when enabled)
    ============================================ */
 .dna-amenity-item .dna-amenity-icon .directorist-icon-mask::after {
