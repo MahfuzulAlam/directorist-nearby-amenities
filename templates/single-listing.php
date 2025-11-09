@@ -10,8 +10,8 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 $lat = get_post_meta( $data['listing_id'], '_manual_lat', true );
 $lng = get_post_meta( $data['listing_id'], '_manual_lng', true );
 
-$by_distance_title = isset($data['by_distance_title']) ? $data['by_distance_title'] : 'Distance';
-$nearby_amenities_title = isset($data['nearby_amenities_title']) ? $data['nearby_amenities_title'] : 'Nearby Amenities';
+$by_distance_title = isset($data['by_distance_title']) ? $data['by_distance_title'] : __('Distance', 'directorist-nearby-amenities');
+$nearby_amenities_title = isset($data['nearby_amenities_title']) ? $data['nearby_amenities_title'] : __('Nearby Amenities', 'directorist-nearby-amenities');
 $by_distance_amenities = isset($data['by_distance_amenities']) ? $data['by_distance_amenities'] : '';
 $nearby_amenities = isset($data['nearby_amenities_amenities']) ? $data['nearby_amenities_amenities'] : '';
 $nearby_amenities_radius = isset($data['nearby_amenities_radius']) ? $data['nearby_amenities_radius'] : 500;

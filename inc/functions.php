@@ -61,18 +61,18 @@ function dna_generate_nearby_amenities( $amenity_args = [] ) {
                                                 if ($time) {
                                                     // Show label depending on mode
                                                     if ($mode === 'walking') {
-                                                        echo esc_html($time . " walk to " . $place['name']);
+                                                        echo esc_html($time . " " . __('walk to', 'directorist-nearby-amenities') . " " . $place['name']);
                                                     } elseif ($mode === 'driving') {
-                                                        echo esc_html($time . " drive to " . $place['name']);
+                                                        echo esc_html($time . " " . __('drive to', 'directorist-nearby-amenities') . " " . $place['name']);
                                                     } elseif ($mode === 'cycling') {
-                                                        echo esc_html($time . " bike ride to " . $place['name']);
+                                                        echo esc_html($time . " " . __('bike ride to', 'directorist-nearby-amenities') . " " . $place['name']);
                                                     } elseif ($mode === 'transit') {
-                                                        echo esc_html($time . " transit to " . $place['name']);
+                                                        echo esc_html($time . " " . __('transit to', 'directorist-nearby-amenities') . " " . $place['name']);
                                                     } else {
-                                                        echo esc_html($time . " to " . $place['name']);
+                                                        echo esc_html($time . " " . __('to', 'directorist-nearby-amenities') . " " . $place['name']);
                                                     }
                                                 } else {
-                                                    echo esc_html("Nearby " . ucfirst($type));
+                                                    echo esc_html(__('Nearby', 'directorist-nearby-amenities') . " " . ucfirst($type));
                                                 }
                                             ?>
                                         </span>
@@ -86,7 +86,7 @@ function dna_generate_nearby_amenities( $amenity_args = [] ) {
                 <?php endforeach; ?>
                 <?php if($distance_found == 0): ?>
                     <div class="dna-no-results-found">
-                        <span class="dna-amenity-text"><?php echo esc_html("No nearby places found"); ?></span>
+                        <span class="dna-amenity-text"><?php echo esc_html__('No nearby places found', 'directorist-nearby-amenities'); ?></span>
                     </div>
                 <?php endif; ?>
             </div>
@@ -124,7 +124,7 @@ function dna_generate_nearby_amenities( $amenity_args = [] ) {
                 <?php endforeach; ?>
                 <?php if($amenity_found == 0): ?>
                     <div class="dna-no-results-found">
-                        <span class="dna-amenity-text"><?php echo esc_html("No nearby amenities found"); ?></span>
+                        <span class="dna-amenity-text"><?php echo esc_html__('No nearby amenities found', 'directorist-nearby-amenities'); ?></span>
                     </div>
                 <?php endif; ?>
             </div>
@@ -179,407 +179,407 @@ function dna_get_amenity_types_list() {
         // Essentials
         [
             'key' => 'hospital',
-            'label' => 'Hospital',
+            'label' => __('Hospital', 'directorist-nearby-amenities'),
             'icon' => 'fa fa-hospital',
             'color' => '#DC3545' // Red
         ],
         [
             'key' => 'doctor',
-            'label' => 'Doctor / Clinic',
+            'label' => __('Doctor / Clinic', 'directorist-nearby-amenities'),
             'icon' => 'fa fa-user-md',
             'color' => '#007BFF' // Blue
         ],
         [
             'key' => 'pharmacy',
-            'label' => 'Pharmacy',
+            'label' => __('Pharmacy', 'directorist-nearby-amenities'),
             'icon' => 'fa fa-prescription-bottle-alt',
             'color' => '#28A745' // Green
         ],
         [
             'key' => 'dentist',
-            'label' => 'Dentist',
+            'label' => __('Dentist', 'directorist-nearby-amenities'),
             'icon' => 'fa fa-tooth',
             'color' => '#17A2B8' // Teal
         ],
         [
             'key' => 'veterinary_care',
-            'label' => 'Veterinary Care',
+            'label' => __('Veterinary Care', 'directorist-nearby-amenities'),
             'icon' => 'fa fa-dog',
             'color' => '#6F42C1' // Purple
         ],
         // Transport
         [
             'key' => 'bus_station',
-            'label' => 'Bus Stop',
+            'label' => __('Bus Stop', 'directorist-nearby-amenities'),
             'icon' => 'fa fa-bus',
             'color' => '#FFC107' // Amber
         ],
         [
             'key' => 'subway_station',
-            'label' => 'Metro / Subway Station',
+            'label' => __('Metro / Subway Station', 'directorist-nearby-amenities'),
             'icon' => 'fa fa-subway',
             'color' => '#6610f2' // Indigo
         ],
         [
             'key' => 'train_station',
-            'label' => 'Train Station',
+            'label' => __('Train Station', 'directorist-nearby-amenities'),
             'icon' => 'fa fa-train',
             'color' => '#FF851B' // Orange
         ],
         [
             'key' => 'transit_station',
-            'label' => 'Transit Station',
+            'label' => __('Transit Station', 'directorist-nearby-amenities'),
             'icon' => 'fa fa-bus-alt',
             'color' => '#FFD600' // Yellow
         ],
         [
             'key' => 'airport',
-            'label' => 'Airport',
+            'label' => __('Airport', 'directorist-nearby-amenities'),
             'icon' => 'fa fa-plane',
             'color' => '#0074D9' // Sky Blue
         ],
         [
             'key' => 'taxi_stand',
-            'label' => 'Taxi Stand',
+            'label' => __('Taxi Stand', 'directorist-nearby-amenities'),
             'icon' => 'fa fa-taxi',
             'color' => '#FFDD57' // Gold-Yellow
         ],
         [
             'key' => 'parking',
-            'label' => 'Parking',
+            'label' => __('Parking', 'directorist-nearby-amenities'),
             'icon' => 'fa fa-parking',
             'color' => '#6C757D' // Grey
         ],
         // Education
         [
             'key' => 'school',
-            'label' => 'School',
+            'label' => __('School', 'directorist-nearby-amenities'),
             'icon' => 'fa fa-school',
             'color' => '#00B894' // Turquoise Green
         ],
         [
             'key' => 'university',
-            'label' => 'University',
+            'label' => __('University', 'directorist-nearby-amenities'),
             'icon' => 'fa fa-university',
             'color' => '#3D5AFE' // Blue
         ],
         [
             'key' => 'library',
-            'label' => 'Library',
+            'label' => __('Library', 'directorist-nearby-amenities'),
             'icon' => 'fa fa-book',
             'color' => '#795548' // Brown
         ],
         // Shopping
         [
             'key' => 'shopping_mall',
-            'label' => 'Shopping Mall',
+            'label' => __('Shopping Mall', 'directorist-nearby-amenities'),
             'icon' => 'fa fa-shopping-bag',
             'color' => '#FF69B4' // Pink
         ],
         [
             'key' => 'store',
-            'label' => 'Store',
+            'label' => __('Store', 'directorist-nearby-amenities'),
             'icon' => 'fa fa-store',
             'color' => '#43A047' // Dark Green
         ],
         [
             'key' => 'supermarket',
-            'label' => 'Supermarket',
+            'label' => __('Supermarket', 'directorist-nearby-amenities'),
             'icon' => 'fa fa-shopping-cart',
             'color' => '#8D6E63' // Soft Brown
         ],
         [
             'key' => 'convenience_store',
-            'label' => 'Convenience Store',
+            'label' => __('Convenience Store', 'directorist-nearby-amenities'),
             'icon' => 'fa fa-store-alt',
             'color' => '#FFA000' // Deep Yellow
         ],
         [
             'key' => 'clothing_store',
-            'label' => 'Clothing Store',
+            'label' => __('Clothing Store', 'directorist-nearby-amenities'),
             'icon' => 'fa fa-tshirt',
             'color' => '#B388FF' // Light Purple
         ],
         [
             'key' => 'electronics_store',
-            'label' => 'Electronics Store',
+            'label' => __('Electronics Store', 'directorist-nearby-amenities'),
             'icon' => 'fa fa-plug',
             'color' => '#FF5722' // Deep Orange
         ],
         [
             'key' => 'furniture_store',
-            'label' => 'Furniture Store',
+            'label' => __('Furniture Store', 'directorist-nearby-amenities'),
             'icon' => 'fa fa-couch',
             'color' => '#A1887F' // Brown-Gray
         ],
         [
             'key' => 'hardware_store',
-            'label' => 'Hardware Store',
+            'label' => __('Hardware Store', 'directorist-nearby-amenities'),
             'icon' => 'fa fa-tools',
             'color' => '#616161' // Dark Gray
         ],
         [
             'key' => 'home_goods_store',
-            'label' => 'Home Goods Store',
+            'label' => __('Home Goods Store', 'directorist-nearby-amenities'),
             'icon' => 'fa fa-home',
             'color' => '#009688' // Teal
         ],
         [
             'key' => 'jewelry_store',
-            'label' => 'Jewelry Store',
+            'label' => __('Jewelry Store', 'directorist-nearby-amenities'),
             'icon' => 'fa fa-gem',
             'color' => '#FFD700' // Gold
         ],
         [
             'key' => 'pet_store',
-            'label' => 'Pet Store',
+            'label' => __('Pet Store', 'directorist-nearby-amenities'),
             'icon' => 'fa fa-paw',
             'color' => '#FDD835' // Yellow
         ],
         [
             'key' => 'book_store',
-            'label' => 'Bookstore',
+            'label' => __('Bookstore', 'directorist-nearby-amenities'),
             'icon' => 'fa fa-book-open',
             'color' => '#6D4C41' // Brown
         ],
         // Food & Drinks
         [
             'key' => 'restaurant',
-            'label' => 'Restaurant',
+            'label' => __('Restaurant', 'directorist-nearby-amenities'),
             'icon' => 'fa fa-utensils',
             'color' => '#D84315' // Reddish Orange
         ],
         [
             'key' => 'cafe',
-            'label' => 'Cafe',
+            'label' => __('Cafe', 'directorist-nearby-amenities'),
             'icon' => 'fa fa-coffee',
             'color' => '#A0522D' // Coffee Brown
         ],
         [
             'key' => 'bakery',
-            'label' => 'Bakery',
+            'label' => __('Bakery', 'directorist-nearby-amenities'),
             'icon' => 'fa fa-bread-slice',
             'color' => '#FBC02D' // Light Yellow
         ],
         [
             'key' => 'bar',
-            'label' => 'Bar',
+            'label' => __('Bar', 'directorist-nearby-amenities'),
             'icon' => 'fa fa-glass-martini-alt',
             'color' => '#6F42C1' // Purple
         ],
         [
             'key' => 'meal_takeaway',
-            'label' => 'Takeaway',
+            'label' => __('Takeaway', 'directorist-nearby-amenities'),
             'icon' => 'fa fa-hamburger',
             'color' => '#8D6E63' // Soft Brown
         ],
         [
             'key' => 'meal_delivery',
-            'label' => 'Food Delivery',
+            'label' => __('Food Delivery', 'directorist-nearby-amenities'),
             'icon' => 'fa fa-motorcycle',
             'color' => '#0288D1' // Blue
         ],
         // Lifestyle & Leisure
         [
             'key' => 'gym',
-            'label' => 'Fitness Center / Gym',
+            'label' => __('Fitness Center / Gym', 'directorist-nearby-amenities'),
             'icon' => 'fa fa-dumbbell',
             'color' => '#388E3C' // Green
         ],
         [
             'key' => 'spa',
-            'label' => 'Spa / Swimming Pool',
+            'label' => __('Spa / Swimming Pool', 'directorist-nearby-amenities'),
             'icon' => 'fa fa-spa',
             'color' => '#00B8D4' // Cyan
         ],
         [
             'key' => 'stadium',
-            'label' => 'Stadium',
+            'label' => __('Stadium', 'directorist-nearby-amenities'),
             'icon' => 'fa fa-football-ball',
             'color' => '#F44336' // Red
         ],
         [
             'key' => 'movie_theater',
-            'label' => 'Movie Theater',
+            'label' => __('Movie Theater', 'directorist-nearby-amenities'),
             'icon' => 'fa fa-film',
             'color' => '#E040FB' // Purple
         ],
         [
             'key' => 'museum',
-            'label' => 'Museum',
+            'label' => __('Museum', 'directorist-nearby-amenities'),
             'icon' => 'fa fa-landmark',
             'color' => '#795548' // Brown
         ],
         [
             'key' => 'art_gallery',
-            'label' => 'Art Gallery',
+            'label' => __('Art Gallery', 'directorist-nearby-amenities'),
             'icon' => 'fa fa-palette',
             'color' => '#FF4081' // Pink
         ],
         [
             'key' => 'night_club',
-            'label' => 'Night Club',
+            'label' => __('Night Club', 'directorist-nearby-amenities'),
             'icon' => 'fa fa-music',
             'color' => '#C51162' // Deep Pink
         ],
         [
             'key' => 'zoo',
-            'label' => 'Zoo',
+            'label' => __('Zoo', 'directorist-nearby-amenities'),
             'icon' => 'fa fa-hippo',
             'color' => '#4CAF50' // Green
         ],
         [
             'key' => 'aquarium',
-            'label' => 'Aquarium',
+            'label' => __('Aquarium', 'directorist-nearby-amenities'),
             'icon' => 'fa fa-fish',
             'color' => '#00B8D4' // Bright Blue
         ],
         [
             'key' => 'casino',
-            'label' => 'Casino',
+            'label' => __('Casino', 'directorist-nearby-amenities'),
             'icon' => 'fa fa-dice',
             'color' => '#FFD600' // Yellow
         ],
         [
             'key' => 'bowling_alley',
-            'label' => 'Bowling Alley',
+            'label' => __('Bowling Alley', 'directorist-nearby-amenities'),
             'icon' => 'fa fa-bowling-ball',
             'color' => '#607D8B' // Blue Grey
         ],
         // Outdoor & Nature
         [
             'key' => 'park',
-            'label' => 'Park',
+            'label' => __('Park', 'directorist-nearby-amenities'),
             'icon' => 'fa fa-tree',
             'color' => '#43A047' // Green
         ],
         [
             'key' => 'campground',
-            'label' => 'Campground',
+            'label' => __('Campground', 'directorist-nearby-amenities'),
             'icon' => 'fa fa-campground',
             'color' => '#A1887F' // Brown-gray
         ],
         [
             'key' => 'tourist_attraction',
-            'label' => 'Tourist Attraction',
+            'label' => __('Tourist Attraction', 'directorist-nearby-amenities'),
             'icon' => 'fa fa-binoculars',
             'color' => '#E65100' // Deep Orange
         ],
         // Services
         [
             'key' => 'atm',
-            'label' => 'ATM',
+            'label' => __('ATM', 'directorist-nearby-amenities'),
             'icon' => 'fa fa-credit-card',
             'color' => '#1976D2' // Blue
         ],
         [
             'key' => 'bank',
-            'label' => 'Bank',
+            'label' => __('Bank', 'directorist-nearby-amenities'),
             'icon' => 'fa fa-university',
             'color' => '#283593' // Deep Blue
         ],
         [
             'key' => 'post_office',
-            'label' => 'Post Office',
+            'label' => __('Post Office', 'directorist-nearby-amenities'),
             'icon' => 'fa fa-envelope',
             'color' => '#EC407A' // Pink
         ],
         [
             'key' => 'police',
-            'label' => 'Police Station',
+            'label' => __('Police Station', 'directorist-nearby-amenities'),
             'icon' => 'fa fa-user-shield',
             'color' => '#2E3B55' // Navy
         ],
         [
             'key' => 'fire_station',
-            'label' => 'Fire Station',
+            'label' => __('Fire Station', 'directorist-nearby-amenities'),
             'icon' => 'fa fa-fire-extinguisher',
             'color' => '#FF0000' // Fire Red
         ],
         [
             'key' => 'city_hall',
-            'label' => 'City Hall',
+            'label' => __('City Hall', 'directorist-nearby-amenities'),
             'icon' => 'fa fa-city',
             'color' => '#6C3483' // Purple
         ],
         [
             'key' => 'embassy',
-            'label' => 'Embassy',
+            'label' => __('Embassy', 'directorist-nearby-amenities'),
             'icon' => 'fa fa-flag',
             'color' => '#0097A7' // Teal Blue
         ],
         [
             'key' => 'lawyer',
-            'label' => 'Lawyer',
+            'label' => __('Lawyer', 'directorist-nearby-amenities'),
             'icon' => 'fa fa-gavel',
             'color' => '#8D6E63' // Taupe
         ],
         [
             'key' => 'real_estate_agency',
-            'label' => 'Real Estate Agency',
+            'label' => __('Real Estate Agency', 'directorist-nearby-amenities'),
             'icon' => 'fa fa-building',
             'color' => '#607D8B' // Blue Grey
         ],
         // Lodging
         [
             'key' => 'lodging',
-            'label' => 'Hotel / Lodging',
+            'label' => __('Hotel / Lodging', 'directorist-nearby-amenities'),
             'icon' => 'fa fa-hotel',
             'color' => '#FFA500' // Orange
         ],
         [
             'key' => 'rv_park',
-            'label' => 'RV Park',
+            'label' => __('RV Park', 'directorist-nearby-amenities'),
             'icon' => 'fa fa-caravan',
             'color' => '#A1887F' // Light Brown
         ],
         // Auto Services
         [
             'key' => 'car_rental',
-            'label' => 'Car Rental',
+            'label' => __('Car Rental', 'directorist-nearby-amenities'),
             'icon' => 'fa fa-car',
             'color' => '#607D8B' // Gray Blue
         ],
         [
             'key' => 'car_dealer',
-            'label' => 'Car Dealer',
+            'label' => __('Car Dealer', 'directorist-nearby-amenities'),
             'icon' => 'fa fa-car-side',
             'color' => '#455A64' // Blue Grey
         ],
         [
             'key' => 'car_repair',
-            'label' => 'Car Repair',
+            'label' => __('Car Repair', 'directorist-nearby-amenities'),
             'icon' => 'fa fa-tools',
             'color' => '#6D4C41' // Brown
         ],
         [
             'key' => 'gas_station',
-            'label' => 'Gas Station',
+            'label' => __('Gas Station', 'directorist-nearby-amenities'),
             'icon' => 'fa fa-gas-pump',
             'color' => '#F4511E' // Orange-Red
         ],
         // Religion
         [
             'key' => 'church',
-            'label' => 'Church',
+            'label' => __('Church', 'directorist-nearby-amenities'),
             'icon' => 'fa fa-church',
             'color' => '#4527A0' // Deep Purple
         ],
         [
             'key' => 'hindu_temple',
-            'label' => 'Hindu Temple',
+            'label' => __('Hindu Temple', 'directorist-nearby-amenities'),
             'icon' => 'fa fa-om',
             'color' => '#FF7043' // Orange
         ],
         [
             'key' => 'mosque',
-            'label' => 'Mosque',
+            'label' => __('Mosque', 'directorist-nearby-amenities'),
             'icon' => 'fa fa-mosque',
             'color' => '#388E3C' // Green
         ],
         [
             'key' => 'synagogue',
-            'label' => 'Synagogue',
+            'label' => __('Synagogue', 'directorist-nearby-amenities'),
             'icon' => 'fa fa-synagogue',
             'color' => '#FBC02D' // Yellow
         ]
@@ -603,7 +603,7 @@ function dna_get_amenity_by_key($key) {
 function dna_ajax_load_nearby_amenities() {
     // Verify nonce for security
     if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'dna_load_amenities_nonce')) {
-        wp_send_json_error(array('message' => 'Security check failed'));
+        wp_send_json_error(array('message' => __('Security check failed', 'directorist-nearby-amenities')));
         return;
     }
 
@@ -611,7 +611,7 @@ function dna_ajax_load_nearby_amenities() {
     $listing_id = isset($_POST['listing_id']) ? intval($_POST['listing_id']) : 0;
     
     if (!$listing_id) {
-        wp_send_json_error(array('message' => 'Invalid listing ID'));
+        wp_send_json_error(array('message' => __('Invalid listing ID', 'directorist-nearby-amenities')));
         return;
     }
 
@@ -623,8 +623,8 @@ function dna_ajax_load_nearby_amenities() {
         'distances' => isset($_POST['distances']) ? sanitize_text_field($_POST['distances']) : '',
         'amenities' => isset($_POST['amenities']) ? sanitize_text_field($_POST['amenities']) : '',
         'mode' => isset($_POST['mode']) ? sanitize_text_field($_POST['mode']) : 'driving',
-        'by_distance_title' => isset($_POST['by_distance_title']) ? sanitize_text_field($_POST['by_distance_title']) : 'Distance',
-        'nearby_amenities_title' => isset($_POST['nearby_amenities_title']) ? sanitize_text_field($_POST['nearby_amenities_title']) : 'Nearby Amenities',
+        'by_distance_title' => isset($_POST['by_distance_title']) ? sanitize_text_field($_POST['by_distance_title']) : __('Distance', 'directorist-nearby-amenities'),
+        'nearby_amenities_title' => isset($_POST['nearby_amenities_title']) ? sanitize_text_field($_POST['nearby_amenities_title']) : __('Nearby Amenities', 'directorist-nearby-amenities'),
         'max_amenities' => isset($_POST['max_amenities']) ? intval($_POST['max_amenities']) : 3,
     );
 

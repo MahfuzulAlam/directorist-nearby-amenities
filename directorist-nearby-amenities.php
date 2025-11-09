@@ -6,12 +6,12 @@
 
 /**
  * Plugin Name:       Directorist - Nearby Amenities
- * Plugin URI:        https://wpwax.com
- * Description:       Display nearby amenities
- * Version:           2.0.0
+ * Plugin URI:        https://wpxplore.com/tools/directorist-nearby-amenities
+ * Description:       Adds a Nearby Amenities widget to Directorist listings, allowing users to view nearby places like hospitals, restaurants, and more.
+ * Version:           3.0.0
  * Requires at least: 5.2
- * Author:            wpWax
- * Author URI:        https://wpwax.com
+ * Author:            wpXplore
+ * Author URI:        https://wpxplore.com
  * License:           GPL v2 or later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain:       directorist-nearby-amenities
@@ -105,10 +105,10 @@ if (!class_exists('Directorist_Nearby_Amenities')) {
         public function enqueue_scripts()
         {
             // Replace 'your-plugin-name' with the actual name of your plugin's folder.
-            wp_enqueue_script('directorist-custom-script', DIRECTORIST_NEARBY_AMENITIES_URI . 'assets/js/main.js', array('jquery'), '2.0', true);
+            wp_enqueue_script('directorist-nearby-amenities-script', DIRECTORIST_NEARBY_AMENITIES_URI . 'assets/js/main.js', array('jquery'), '2.0', true);
             
             // Localize script for Ajax
-            wp_localize_script('directorist-custom-script', 'dnaAmenities', array(
+            wp_localize_script('directorist-nearby-amenities-script', 'dnaAmenities', array(
                 'ajaxUrl' => admin_url('admin-ajax.php'),
                 'nonce' => wp_create_nonce('dna_load_amenities_nonce')
             ));
@@ -120,7 +120,7 @@ if (!class_exists('Directorist_Nearby_Amenities')) {
         public function enqueue_styles()
         {
             // Replace 'your-plugin-name' with the actual name of your plugin's folder.
-            wp_enqueue_style('directorist-custom-style', DIRECTORIST_NEARBY_AMENITIES_URI . 'assets/css/main.css', array(), '2.0');
+            wp_enqueue_style('directorist-nearby-amenities-style', DIRECTORIST_NEARBY_AMENITIES_URI . 'assets/css/main.css', array(), '2.0');
         }
 
         /**
