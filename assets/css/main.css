@@ -4,6 +4,7 @@
 }
 
 .distances {
+  margin-top: 12px;
   margin-bottom: 12px;
 }
 
@@ -23,13 +24,14 @@
 }
 
 .amenities-title {
-  margin: 0 0 8px;
+  margin: 0;
   font-size: 16px;
   font-weight: bold;
   color: #1c2a3a;
 }
 
 .amenities {
+  margin-top: 12px;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 6px 12px;

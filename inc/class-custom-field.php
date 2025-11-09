@@ -86,10 +86,22 @@ if (! class_exists('DRA_Custom_Field')):
                         'value'       => 'walking',
                         'description' => __('You can select the nearby amenities mode', 'directorist-nearby-amenities'),
                         'options'     => [
-                            'walking' => __('Walking', 'directorist-nearby-amenities'),
-                            'driving' => __('Driving', 'directorist-nearby-amenities'),
-                            'cycling' => __('Cycling', 'directorist-nearby-amenities'),
-                            'transit' => __('Transit', 'directorist-nearby-amenities'),
+                            [
+                                'label' => __('Walking', 'directorist-nearby-amenities'),
+                                'value' => 'walking',
+                            ],
+                            [
+                                'label' => __('Driving', 'directorist-nearby-amenities'),
+                                'value' => 'driving',
+                            ],
+                            [
+                                'label' => __('Cycling', 'directorist-nearby-amenities'),
+                                'value' => 'cycling',
+                            ],
+                            [
+                                'label' => __('Transit', 'directorist-nearby-amenities'),
+                                'value' => 'transit',
+                            ],
                         ],
                     ],
                     'max_amenities' => [

@@ -40,17 +40,42 @@ function dna_generate_nearby_amenities( $amenity_args = [] ) {
                 <?php if( $amenity = dna_get_amenity_by_key($type) ): ?>
                     <?php
                         $places = dna_get_nearby_places($lat, $lng, $type, $radius, $apiKey);
+                        $i = 0;
                         if (!empty($places)) {
-                            $place = $places[0]; // Closest
-                            $time = dna_get_travel_time($lat, $lng, $place['geometry']['location']['lat'], $place['geometry']['location']['lng'], $mode, $apiKey);
+                            foreach ($places as $place) {
+                                if ($i >= $max_amenities) {
+                                    break;
+                                }
+                                $time = dna_get_travel_time($lat, $lng, $place['geometry']['location']['lat'], $place['geometry']['location']['lng'], $mode, $apiKey);
+                    ?>
+                                <div class="distance-item">
+                                    <?php directorist_icon( $amenity['icon'] ); ?>
+                                    <span>
+                                        <?php
+                                            if ($time) {
+                                                // Show label depending on mode
+                                                if ($mode === 'walking') {
+                                                    echo esc_html($time . " walk to " . $place['name']);
+                                                } elseif ($mode === 'driving') {
+                                                    echo esc_html($time . " drive to " . $place['name']);
+                                                } elseif ($mode === 'cycling') {
+                                                    echo esc_html($time . " bike ride to " . $place['name']);
+                                                } elseif ($mode === 'transit') {
+                                                    echo esc_html($time . " transit to " . $place['name']);
+                                                } else {
+                                                    echo esc_html($time . " to " . $place['name']);
+                                                }
+                                            } else {
+                                                echo esc_html("Nearby " . ucfirst($type));
+                                            }
+                                        ?>
+                                    </span>
+                                </div>
+                    <?php
+                                $i++;
+                            }
                         }
                     ?>
-                    <?php if(!empty($place)): ?>
-                        <div class="distance-item">
-                            <?php directorist_icon( $amenity['icon'] ); ?>
-                            <span><?php echo $time ? $time . " walk to " . $place['name'] : "Nearby " . ucfirst($type); ?></span>
-                        </div>
-                    <?php endif; ?>
                 <?php endif; ?>
             <?php endforeach; ?>
         </div>
@@ -62,16 +87,22 @@ function dna_generate_nearby_amenities( $amenity_args = [] ) {
                 <?php if( $amenity = dna_get_amenity_by_key($type) ): ?>
                     <?php
                         $places = dna_get_nearby_places($lat, $lng, $type, $radius, $apiKey);
-                        if (!empty($places)) {
-                            $place = $places[0];
-                        }
+                        $i = 0;
+                        if (!empty($places)) :
+                            foreach ($places as $place) {
+                                if ($i >= $max_amenities) {
+                                    break;
+                                }
+                                ?>
+                                <div class="amenity-item">
+                                    <?php directorist_icon( $amenity['icon'] ); ?>
+                                    <span><?php echo $place['name']; ?></span>
+                                </div>
+                                <?php
+                                $i++;
+                            }
+                        endif;
                     ?>
-                    <?php if(!empty($place)): ?>
-                        <div class="amenity-item">
-                            <?php directorist_icon( $amenity['icon'] ); ?>
-                            <span><?php echo $place['name']; ?></span>
-                        </div>
-                    <?php endif; ?>
                 <?php endif; ?>
             <?php endforeach; ?>
         </div>
@@ -90,7 +121,7 @@ function dna_get_nearby_places($lat, $lng, $type, $radius = 1000, $apiKey) {
 }
 
 // Function to calculate travel time with Distance Matrix
-function dna_get_travel_time($lat, $lng, $destLat, $destLng, $mode = 'walking', $apiKey) {
+function dna_get_travel_time($lat, $lng, $destLat, $destLng, $mode, $apiKey) {
     $url = "https://maps.googleapis.com/maps/api/distancematrix/json?origins={$lat},{$lng}&destinations={$destLat},{$destLng}&mode={$mode}&key={$apiKey}";
     $response = file_get_contents($url);
     $data = json_decode($response, true);

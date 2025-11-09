@@ -15,7 +15,7 @@ $nearby_amenities_title = isset($data['nearby_amenities_title']) ? $data['nearby
 $by_distance_amenities = isset($data['by_distance_amenities']) ? $data['by_distance_amenities'] : '';
 $nearby_amenities = isset($data['nearby_amenities_amenities']) ? $data['nearby_amenities_amenities'] : '';
 $nearby_amenities_radius = isset($data['nearby_amenities_radius']) ? $data['nearby_amenities_radius'] : 500;
-$nearby_amenities_mode = isset($data['nearby_amenities_mode']) ? $data['nearby_amenities_mode'] : 'walking';
+$nearby_amenities_mode = isset($data['nearby_amenities_mode']) ? $data['nearby_amenities_mode'] : 'driving';
 $max_amenities = isset($data['max_amenities']) ? $data['max_amenities'] : 3;
 
 $amenity_args = [
