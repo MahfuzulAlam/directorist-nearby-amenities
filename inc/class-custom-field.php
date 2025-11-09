@@ -110,6 +110,12 @@ if (! class_exists('DRA_Custom_Field')):
                         'value'       => 3,
                         'description' => __('You can type the max amenities per amenity type', 'directorist-nearby-amenities'),
                     ],
+                    'amenity_icon_colors' => [
+                        'type'        => 'toggle',
+                        'label'       => __('Enable Amenity Icon Colors', 'directorist-nearby-amenities'),
+                        'value'       => false,
+                        'description' => __('You can enable the amenity icon colors', 'directorist-nearby-amenities'),
+                    ],
                 ],
             ];
             return $widgets;

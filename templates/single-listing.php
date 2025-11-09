@@ -36,3 +36,19 @@ $amenity_args = [
         <?php echo dna_generate_nearby_amenities( $amenity_args ); ?>
     </div>
 </div>
+
+<?php
+    if (isset($data['amenity_icon_colors']) && $data['amenity_icon_colors'] == true) {
+        $amenity_types = dna_get_amenity_types_list();
+        if (!empty($amenity_types)) {
+            echo '<style>';
+            foreach ($amenity_types as $amenity) {
+                ?>
+                    .dna-amenity-item.<?php echo $amenity['key']; ?> .directorist-icon-mask::after {
+                        background-color: <?php echo $amenity['color']; ?> !important;
+                    }
+                <?php
+            }
+            echo '</style>';
+        }
+    }
