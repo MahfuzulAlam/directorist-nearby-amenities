@@ -1,0 +1,452 @@
+# Copyright (C) 2025 wpXplore
+# This file is distributed under the GPL v2 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: Directorist - Nearby Amenities 3.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/directorist-nearby-amenities\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2025-11-09T16:30:42+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.12.0\n"
+"Plugin Name: Directorist - Nearby Amenities\n"
+"Plugin URI: https://wpxplore.com/tools/directorist-nearby-amenities\n"
+"Description: Adds a Nearby Amenities widget to Directorist listings, allowing users to view nearby places like hospitals, restaurants, and more.\n"
+"Version: 3.0.0\n"
+"Author: wpXplore\n"
+"Author URI: https://wpxplore.com\n"
+"Text Domain: directorist-nearby-amenities\n"
+"Domain Path: /languages\n"
+"X-Domain: directorist-nearby-amenities\n"
+
+#. Plugin Name of the plugin
+#: directorist-nearby-amenities.php
+msgid "Directorist - Nearby Amenities"
+msgstr ""
+
+#. Plugin URI of the plugin
+#: directorist-nearby-amenities.php
+msgid "https://wpxplore.com/tools/directorist-nearby-amenities"
+msgstr ""
+
+#. Description of the plugin
+#: directorist-nearby-amenities.php
+msgid "Adds a Nearby Amenities widget to Directorist listings, allowing users to view nearby places like hospitals, restaurants, and more."
+msgstr ""
+
+#. Author of the plugin
+#: directorist-nearby-amenities.php
+msgid "wpXplore"
+msgstr ""
+
+#. Author URI of the plugin
+#: directorist-nearby-amenities.php
+msgid "https://wpxplore.com"
+msgstr ""
+
+#: inc/class-custom-field.php:40
+#: inc/class-custom-field.php:73
+#: inc/functions.php:627
+#: templates/single-listing.php:14
+msgid "Nearby Amenities"
+msgstr ""
+
+#: inc/class-custom-field.php:45
+msgid "Label"
+msgstr ""
+
+#: inc/class-custom-field.php:50
+msgid "Icon"
+msgstr ""
+
+#: inc/class-custom-field.php:55
+msgid "By Distance Title"
+msgstr ""
+
+#: inc/class-custom-field.php:57
+msgid "You can type the amenity types"
+msgstr ""
+
+#: inc/class-custom-field.php:61
+msgid "By Distance Amenities"
+msgstr ""
+
+#: inc/class-custom-field.php:63
+msgid "You can type the amenity types, separated by comma. e.g. hospital, doctor, pharmacy, dentist, veterinary_care"
+msgstr ""
+
+#: inc/class-custom-field.php:67
+msgid "Nearby Amenities Title"
+msgstr ""
+
+#: inc/class-custom-field.php:69
+msgid "You can type the nearby amenities title"
+msgstr ""
+
+#: inc/class-custom-field.php:75
+msgid "You can type the nearby amenities, separated by comma. e.g. hospital, doctor, pharmacy, dentist, veterinary_care"
+msgstr ""
+
+#: inc/class-custom-field.php:79
+msgid "Nearby Amenities Radius in meters"
+msgstr ""
+
+#: inc/class-custom-field.php:81
+msgid "You can type the nearby amenities radius"
+msgstr ""
+
+#: inc/class-custom-field.php:85
+msgid "Nearby Amenities Mode"
+msgstr ""
+
+#: inc/class-custom-field.php:87
+msgid "You can select the nearby amenities mode"
+msgstr ""
+
+#: inc/class-custom-field.php:90
+msgid "Walking"
+msgstr ""
+
+#: inc/class-custom-field.php:94
+msgid "Driving"
+msgstr ""
+
+#: inc/class-custom-field.php:98
+msgid "Cycling"
+msgstr ""
+
+#: inc/class-custom-field.php:102
+msgid "Transit"
+msgstr ""
+
+#: inc/class-custom-field.php:109
+msgid "Max Amenities Per Amenity Type"
+msgstr ""
+
+#: inc/class-custom-field.php:111
+msgid "You can type the max amenities per amenity type"
+msgstr ""
+
+#: inc/class-custom-field.php:115
+msgid "Enable Amenity Icon Colors"
+msgstr ""
+
+#: inc/class-custom-field.php:117
+msgid "You can enable the amenity icon colors"
+msgstr ""
+
+#: inc/functions.php:64
+msgid "walk to"
+msgstr ""
+
+#: inc/functions.php:66
+msgid "drive to"
+msgstr ""
+
+#: inc/functions.php:68
+msgid "bike ride to"
+msgstr ""
+
+#: inc/functions.php:70
+msgid "transit to"
+msgstr ""
+
+#: inc/functions.php:72
+msgid "to"
+msgstr ""
+
+#: inc/functions.php:75
+msgid "Nearby"
+msgstr ""
+
+#: inc/functions.php:89
+msgid "No nearby places found"
+msgstr ""
+
+#: inc/functions.php:127
+msgid "No nearby amenities found"
+msgstr ""
+
+#: inc/functions.php:182
+msgid "Hospital"
+msgstr ""
+
+#: inc/functions.php:188
+msgid "Doctor / Clinic"
+msgstr ""
+
+#: inc/functions.php:194
+msgid "Pharmacy"
+msgstr ""
+
+#: inc/functions.php:200
+msgid "Dentist"
+msgstr ""
+
+#: inc/functions.php:206
+msgid "Veterinary Care"
+msgstr ""
+
+#: inc/functions.php:213
+msgid "Bus Stop"
+msgstr ""
+
+#: inc/functions.php:219
+msgid "Metro / Subway Station"
+msgstr ""
+
+#: inc/functions.php:225
+msgid "Train Station"
+msgstr ""
+
+#: inc/functions.php:231
+msgid "Transit Station"
+msgstr ""
+
+#: inc/functions.php:237
+msgid "Airport"
+msgstr ""
+
+#: inc/functions.php:243
+msgid "Taxi Stand"
+msgstr ""
+
+#: inc/functions.php:249
+msgid "Parking"
+msgstr ""
+
+#: inc/functions.php:256
+msgid "School"
+msgstr ""
+
+#: inc/functions.php:262
+msgid "University"
+msgstr ""
+
+#: inc/functions.php:268
+msgid "Library"
+msgstr ""
+
+#: inc/functions.php:275
+msgid "Shopping Mall"
+msgstr ""
+
+#: inc/functions.php:281
+msgid "Store"
+msgstr ""
+
+#: inc/functions.php:287
+msgid "Supermarket"
+msgstr ""
+
+#: inc/functions.php:293
+msgid "Convenience Store"
+msgstr ""
+
+#: inc/functions.php:299
+msgid "Clothing Store"
+msgstr ""
+
+#: inc/functions.php:305
+msgid "Electronics Store"
+msgstr ""
+
+#: inc/functions.php:311
+msgid "Furniture Store"
+msgstr ""
+
+#: inc/functions.php:317
+msgid "Hardware Store"
+msgstr ""
+
+#: inc/functions.php:323
+msgid "Home Goods Store"
+msgstr ""
+
+#: inc/functions.php:329
+msgid "Jewelry Store"
+msgstr ""
+
+#: inc/functions.php:335
+msgid "Pet Store"
+msgstr ""
+
+#: inc/functions.php:341
+msgid "Bookstore"
+msgstr ""
+
+#: inc/functions.php:348
+msgid "Restaurant"
+msgstr ""
+
+#: inc/functions.php:354
+msgid "Cafe"
+msgstr ""
+
+#: inc/functions.php:360
+msgid "Bakery"
+msgstr ""
+
+#: inc/functions.php:366
+msgid "Bar"
+msgstr ""
+
+#: inc/functions.php:372
+msgid "Takeaway"
+msgstr ""
+
+#: inc/functions.php:378
+msgid "Food Delivery"
+msgstr ""
+
+#: inc/functions.php:385
+msgid "Fitness Center / Gym"
+msgstr ""
+
+#: inc/functions.php:391
+msgid "Spa / Swimming Pool"
+msgstr ""
+
+#: inc/functions.php:397
+msgid "Stadium"
+msgstr ""
+
+#: inc/functions.php:403
+msgid "Movie Theater"
+msgstr ""
+
+#: inc/functions.php:409
+msgid "Museum"
+msgstr ""
+
+#: inc/functions.php:415
+msgid "Art Gallery"
+msgstr ""
+
+#: inc/functions.php:421
+msgid "Night Club"
+msgstr ""
+
+#: inc/functions.php:427
+msgid "Zoo"
+msgstr ""
+
+#: inc/functions.php:433
+msgid "Aquarium"
+msgstr ""
+
+#: inc/functions.php:439
+msgid "Casino"
+msgstr ""
+
+#: inc/functions.php:445
+msgid "Bowling Alley"
+msgstr ""
+
+#: inc/functions.php:452
+msgid "Park"
+msgstr ""
+
+#: inc/functions.php:458
+msgid "Campground"
+msgstr ""
+
+#: inc/functions.php:464
+msgid "Tourist Attraction"
+msgstr ""
+
+#: inc/functions.php:471
+msgid "ATM"
+msgstr ""
+
+#: inc/functions.php:477
+msgid "Bank"
+msgstr ""
+
+#: inc/functions.php:483
+msgid "Post Office"
+msgstr ""
+
+#: inc/functions.php:489
+msgid "Police Station"
+msgstr ""
+
+#: inc/functions.php:495
+msgid "Fire Station"
+msgstr ""
+
+#: inc/functions.php:501
+msgid "City Hall"
+msgstr ""
+
+#: inc/functions.php:507
+msgid "Embassy"
+msgstr ""
+
+#: inc/functions.php:513
+msgid "Lawyer"
+msgstr ""
+
+#: inc/functions.php:519
+msgid "Real Estate Agency"
+msgstr ""
+
+#: inc/functions.php:526
+msgid "Hotel / Lodging"
+msgstr ""
+
+#: inc/functions.php:532
+msgid "RV Park"
+msgstr ""
+
+#: inc/functions.php:539
+msgid "Car Rental"
+msgstr ""
+
+#: inc/functions.php:545
+msgid "Car Dealer"
+msgstr ""
+
+#: inc/functions.php:551
+msgid "Car Repair"
+msgstr ""
+
+#: inc/functions.php:557
+msgid "Gas Station"
+msgstr ""
+
+#: inc/functions.php:564
+msgid "Church"
+msgstr ""
+
+#: inc/functions.php:570
+msgid "Hindu Temple"
+msgstr ""
+
+#: inc/functions.php:576
+msgid "Mosque"
+msgstr ""
+
+#: inc/functions.php:582
+msgid "Synagogue"
+msgstr ""
+
+#: inc/functions.php:606
+msgid "Security check failed"
+msgstr ""
+
+#: inc/functions.php:614
+msgid "Invalid listing ID"
+msgstr ""
+
+#: inc/functions.php:626
+#: templates/single-listing.php:13
+msgid "Distance"
+msgstr ""
+
+#: templates/single-listing.php:43
+msgid "Loading nearby amenities..."
+msgstr ""
