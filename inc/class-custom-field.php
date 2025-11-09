@@ -43,18 +43,60 @@ if (! class_exists('DRA_Custom_Field')):
                     'label'   => [
                         'type'  => 'text',
                         'label' => __('Label', 'directorist-nearby-amenities'),
-                        'value' => '',
+                        'value' => 'Nearby Amenities',
                     ],
                     'icon'    => [
                         'type'  => 'icon',
                         'label' => __('Icon', 'directorist-nearby-amenities'),
                         'value' => 'la la-map',
                     ],
-                    'content' => [
-                        'type'        => 'textarea',
-                        'label'       => __('Content', 'directorist-nearby-amenities'),
-                        'value'       => '',
+                    'by_distance_title' => [
+                        'type'        => 'text',
+                        'label'       => __('By Distance Title', 'directorist-nearby-amenities'),
+                        'value'       => 'Distances',
                         'description' => __('You can type the amenity types', 'directorist-nearby-amenities'),
+                    ],
+                    'by_distance_amenities' => [
+                        'type'        => 'textarea',
+                        'label'       => __('By Distance Amenities', 'directorist-nearby-amenities'),
+                        'value'       => '',
+                        'description' => __('You can type the amenity types, separated by comma. e.g. hospital, doctor, pharmacy, dentist, veterinary_care', 'directorist-nearby-amenities'),
+                    ],
+                    'nearby_amenities_title' => [
+                        'type'        => 'text',
+                        'label'       => __('Nearby Amenities Title', 'directorist-nearby-amenities'),
+                        'value'       => 'Nearby Amenities',
+                        'description' => __('You can type the nearby amenities title', 'directorist-nearby-amenities'),
+                    ],
+                    'nearby_amenities_amenities' => [
+                        'type'        => 'textarea',
+                        'label'       => __('Nearby Amenities', 'directorist-nearby-amenities'),
+                        'value'       => '',
+                        'description' => __('You can type the nearby amenities, separated by comma. e.g. hospital, doctor, pharmacy, dentist, veterinary_care', 'directorist-nearby-amenities'),
+                    ],
+                    'nearby_amenities_radius' => [
+                        'type'        => 'number',
+                        'label'       => __('Nearby Amenities Radius in meters', 'directorist-nearby-amenities'),
+                        'value'       => 500,
+                        'description' => __('You can type the nearby amenities radius', 'directorist-nearby-amenities'),
+                    ],
+                    'nearby_amenities_mode' => [
+                        'type'        => 'select',
+                        'label'       => __('Nearby Amenities Mode', 'directorist-nearby-amenities'),
+                        'value'       => 'walking',
+                        'description' => __('You can select the nearby amenities mode', 'directorist-nearby-amenities'),
+                        'options'     => [
+                            'walking' => __('Walking', 'directorist-nearby-amenities'),
+                            'driving' => __('Driving', 'directorist-nearby-amenities'),
+                            'cycling' => __('Cycling', 'directorist-nearby-amenities'),
+                            'transit' => __('Transit', 'directorist-nearby-amenities'),
+                        ],
+                    ],
+                    'max_amenities' => [
+                        'type'        => 'number',
+                        'label'       => __('Max Amenities Per Amenity Type', 'directorist-nearby-amenities'),
+                        'value'       => 3,
+                        'description' => __('You can type the max amenities per amenity type', 'directorist-nearby-amenities'),
                     ],
                 ],
             ];
@@ -68,7 +110,8 @@ if (! class_exists('DRA_Custom_Field')):
         {
             if ($field_data['widget_name'] == 'nearby_amenities') {
                 $address = get_post_meta( $field_data['listing_id'], '_address', true );
-                if ( $address ) {
+                $apiKey = get_directorist_option('map_api_key', false);
+                if ( $address && $apiKey ) {
                     $template .= $this->load_template('templates/single-listing', ['data' => $field_data, 'address' => $address]);
                 }
             }
