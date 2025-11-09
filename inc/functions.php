@@ -51,8 +51,10 @@ function dna_generate_nearby_amenities( $amenity_args = [] ) {
                                         break;
                                     }
                                     $time = dna_get_travel_time($lat, $lng, $place['geometry']['location']['lat'], $place['geometry']['location']['lng'], $mode, $apiKey);
+                                    $google_map_url = dna_get_google_map_url($place);
                         ?>
-                                    <div class="dna-distance-item distance-item dna-amenity-item dna-amenity-item--<?php echo esc_attr($amenity['key']); ?>">
+                                    <div class="dna-distance-item distance-item dna-amenity-item dna-amenity-item--<?php echo esc_attr($amenity['key']); ?>" 
+                                         <?php if (!empty($google_map_url)): ?>data-google-map-url="<?php echo esc_attr($google_map_url); ?>"<?php endif; ?>>
                                         <span class="dna-amenity-icon"><?php directorist_icon( $amenity['icon'] ); ?></span>
                                         <span class="dna-amenity-text">
                                             <?php
@@ -106,8 +108,10 @@ function dna_generate_nearby_amenities( $amenity_args = [] ) {
                                     if ($i >= $max_amenities) {
                                         break;
                                     }
+                                    $google_map_url = dna_get_google_map_url($place);
                                     ?>
-                                    <div class="dna-amenity-item amenity-item dna-amenity-item--<?php echo esc_attr($amenity['key']); ?>">
+                                    <div class="dna-amenity-item amenity-item dna-amenity-item--<?php echo esc_attr($amenity['key']); ?>" 
+                                         <?php if (!empty($google_map_url)): ?>data-google-map-url="<?php echo esc_attr($google_map_url); ?>"<?php endif; ?>>
                                         <span class="dna-amenity-icon"><?php directorist_icon( $amenity['icon'] ); ?></span>
                                         <span class="dna-amenity-text"><?php echo esc_html($place['name']); ?></span>
                                     </div>
@@ -129,6 +133,24 @@ function dna_generate_nearby_amenities( $amenity_args = [] ) {
     </div>
     <?php
     return ob_get_clean();
+}
+
+// Function to generate Google Maps URL from place data
+function dna_get_google_map_url($place) {
+    if (isset($place['geometry']['location']['lat']) && isset($place['geometry']['location']['lng'])) {
+        $lat = $place['geometry']['location']['lat'];
+        $lng = $place['geometry']['location']['lng'];
+        
+        // Use Google Maps search URL with coordinates
+        // If place_id is available, use it for better accuracy
+        if (isset($place['place_id']) && !empty($place['place_id'])) {
+            return "https://www.google.com/maps/place/?q=place_id:" . urlencode($place['place_id']);
+        }
+        
+        // Fallback to coordinates-based URL
+        return "https://www.google.com/maps/search/?api=1&query={$lat},{$lng}";
+    }
+    return '';
 }
 
 // Function to fetch places from Google Places API

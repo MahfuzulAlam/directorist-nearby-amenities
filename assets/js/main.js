@@ -88,4 +88,13 @@ jQuery(document).ready(function ($) {
   if ($('.directorist-single-info-nearby-amenities').length > 0) {
     loadNearbyAmenities();
   }
+
+  // Handle click on amenity items to redirect to Google Maps
+  $(document).on('click', '.dna-amenity-item[data-google-map-url]', function(e) {
+    e.preventDefault();
+    var mapUrl = $(this).attr('data-google-map-url');
+    if (mapUrl) {
+      window.open(mapUrl, '_blank');
+    }
+  });
 });

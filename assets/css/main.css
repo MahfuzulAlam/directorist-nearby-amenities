@@ -237,6 +237,16 @@
   opacity: 0.8;
 }
 
+/* Clickable amenity items with Google Maps link */
+.dna-amenity-item[data-google-map-url] {
+  cursor: pointer;
+}
+
+.dna-amenity-item[data-google-map-url]:hover {
+  opacity: 0.8;
+  transform: translateX(1px);
+}
+
 /* ============================================
    No Results Found Styles
    ============================================ */
