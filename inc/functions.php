@@ -554,3 +554,58 @@ function dna_get_amenity_by_key($key) {
     }
     return false;
 }
+
+/**
+ * Ajax handler to load nearby amenities
+ */
+function dna_ajax_load_nearby_amenities() {
+    // Verify nonce for security
+    if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'dna_load_amenities_nonce')) {
+        wp_send_json_error(array('message' => 'Security check failed'));
+        return;
+    }
+
+    // Get and sanitize parameters
+    $listing_id = isset($_POST['listing_id']) ? intval($_POST['listing_id']) : 0;
+    
+    if (!$listing_id) {
+        wp_send_json_error(array('message' => 'Invalid listing ID'));
+        return;
+    }
+
+    // Get amenity arguments from POST data
+    $amenity_args = array(
+        'lat' => isset($_POST['lat']) ? sanitize_text_field($_POST['lat']) : '',
+        'lng' => isset($_POST['lng']) ? sanitize_text_field($_POST['lng']) : '',
+        'radius' => isset($_POST['radius']) ? intval($_POST['radius']) : 500,
+        'distances' => isset($_POST['distances']) ? sanitize_text_field($_POST['distances']) : '',
+        'amenities' => isset($_POST['amenities']) ? sanitize_text_field($_POST['amenities']) : '',
+        'mode' => isset($_POST['mode']) ? sanitize_text_field($_POST['mode']) : 'driving',
+        'by_distance_title' => isset($_POST['by_distance_title']) ? sanitize_text_field($_POST['by_distance_title']) : 'Distance',
+        'nearby_amenities_title' => isset($_POST['nearby_amenities_title']) ? sanitize_text_field($_POST['nearby_amenities_title']) : 'Nearby Amenities',
+        'max_amenities' => isset($_POST['max_amenities']) ? intval($_POST['max_amenities']) : 3,
+    );
+
+    // Generate amenities HTML
+    $amenities_html = dna_generate_nearby_amenities($amenity_args);
+
+    // Get amenity icon colors if enabled
+    $icon_colors_html = '';
+    if (isset($_POST['amenity_icon_colors']) && $_POST['amenity_icon_colors'] == 'true') {
+        $amenity_types = dna_get_amenity_types_list();
+        if (!empty($amenity_types)) {
+            $icon_colors_html = '<style>';
+            foreach ($amenity_types as $amenity) {
+                $icon_colors_html .= '.dna-amenity-item.' . esc_attr($amenity['key']) . ' .directorist-icon-mask::after { background-color: ' . esc_attr($amenity['color']) . ' !important; }';
+            }
+            $icon_colors_html .= '</style>';
+        }
+    }
+
+    wp_send_json_success(array(
+        'html' => $amenities_html,
+        'icon_colors' => $icon_colors_html
+    ));
+}
+add_action('wp_ajax_dna_load_nearby_amenities', 'dna_ajax_load_nearby_amenities');
+add_action('wp_ajax_nopriv_dna_load_nearby_amenities', 'dna_ajax_load_nearby_amenities');

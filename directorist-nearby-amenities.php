@@ -106,6 +106,12 @@ if (!class_exists('Directorist_Nearby_Amenities')) {
         {
             // Replace 'your-plugin-name' with the actual name of your plugin's folder.
             wp_enqueue_script('directorist-custom-script', DIRECTORIST_NEARBY_AMENITIES_URI . 'assets/js/main.js', array('jquery'), '2.0', true);
+            
+            // Localize script for Ajax
+            wp_localize_script('directorist-custom-script', 'dnaAmenities', array(
+                'ajaxUrl' => admin_url('admin-ajax.php'),
+                'nonce' => wp_create_nonce('dna_load_amenities_nonce')
+            ));
         }
 
         /**

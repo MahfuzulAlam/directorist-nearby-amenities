@@ -17,8 +17,11 @@ $nearby_amenities = isset($data['nearby_amenities_amenities']) ? $data['nearby_a
 $nearby_amenities_radius = isset($data['nearby_amenities_radius']) ? $data['nearby_amenities_radius'] : 500;
 $nearby_amenities_mode = isset($data['nearby_amenities_mode']) ? $data['nearby_amenities_mode'] : 'driving';
 $max_amenities = isset($data['max_amenities']) ? $data['max_amenities'] : 3;
+$amenity_icon_colors = isset($data['amenity_icon_colors']) ? $data['amenity_icon_colors'] : false;
 
-$amenity_args = [
+// Prepare data attributes for Ajax
+$amenity_data = [
+    'listing_id' => $data['listing_id'],
     'lat' => $lat,
     'lng' => $lng,
     'radius' => $nearby_amenities_radius,
@@ -28,27 +31,24 @@ $amenity_args = [
     'by_distance_title' => $by_distance_title,
     'nearby_amenities_title' => $nearby_amenities_title,
     'max_amenities' => $max_amenities,
+    'amenity_icon_colors' => $amenity_icon_colors ? 'true' : 'false',
 ];
 ?>
 
-<div class="directorist-single-info directorist-single-info-nearby-amenities">
-    <div class="directorist-single-info__value">
-        <?php echo dna_generate_nearby_amenities( $amenity_args ); ?>
+<div class="directorist-single-info directorist-single-info-nearby-amenities" 
+     data-amenity-args='<?php echo esc_attr(json_encode($amenity_data)); ?>'>
+    <div class="directorist-single-info__value dna-amenities-container">
+        <div class="dna-loading-state" style="text-align: center; padding: 20px;">
+            <span class="dna-spinner" style="display: inline-block; width: 20px; height: 20px; border: 3px solid #f3f3f3; border-top: 3px solid #3498db; border-radius: 50%; animation: dna-spin 1s linear infinite;"></span>
+            <span style="margin-left: 10px;"><?php esc_html_e('Loading nearby amenities...', 'directorist-nearby-amenities'); ?></span>
+        </div>
+        <div class="dna-amenities-content" style="display: none;"></div>
     </div>
 </div>
 
-<?php
-    if (isset($data['amenity_icon_colors']) && $data['amenity_icon_colors'] == true) {
-        $amenity_types = dna_get_amenity_types_list();
-        if (!empty($amenity_types)) {
-            echo '<style>';
-            foreach ($amenity_types as $amenity) {
-                ?>
-                    .dna-amenity-item.<?php echo $amenity['key']; ?> .directorist-icon-mask::after {
-                        background-color: <?php echo $amenity['color']; ?> !important;
-                    }
-                <?php
-            }
-            echo '</style>';
-        }
-    }
+<style>
+@keyframes dna-spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+</style>
