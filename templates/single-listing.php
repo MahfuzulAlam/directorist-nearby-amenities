@@ -35,20 +35,14 @@ $amenity_data = [
 ];
 ?>
 
-<div class="directorist-single-info directorist-single-info-nearby-amenities" 
+<div class="directorist-single-info directorist-single-info-nearby-amenities dna-nearby-amenities-wrapper" 
      data-amenity-args='<?php echo esc_attr(json_encode($amenity_data)); ?>'>
     <div class="directorist-single-info__value dna-amenities-container">
-        <div class="dna-loading-state" style="text-align: center; padding: 20px;">
-            <span class="dna-spinner" style="display: inline-block; width: 20px; height: 20px; border: 3px solid #f3f3f3; border-top: 3px solid #3498db; border-radius: 50%; animation: dna-spin 1s linear infinite;"></span>
-            <span style="margin-left: 10px;"><?php esc_html_e('Loading nearby amenities...', 'directorist-nearby-amenities'); ?></span>
+        <div class="dna-loading-state dna-loading-state--active">
+            <span class="dna-spinner"></span>
+            <span class="dna-loading-text"><?php esc_html_e('Loading nearby amenities...', 'directorist-nearby-amenities'); ?></span>
         </div>
-        <div class="dna-amenities-content" style="display: none;"></div>
+        <div class="dna-amenities-content dna-amenities-content--hidden"></div>
+        <div class="dna-error-message dna-error-message--hidden"></div>
     </div>
 </div>
-
-<style>
-@keyframes dna-spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-</style>

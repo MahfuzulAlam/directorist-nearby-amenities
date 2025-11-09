@@ -1,38 +1,302 @@
-/* Add you custom css here */
-.nearby-widget {
-  padding: 0px;
+/* Directorist Nearby Amenities - Main Styles */
+
+/* ============================================
+   Container & Wrapper Styles
+   ============================================ */
+.dna-nearby-amenities-wrapper {
+  position: relative;
+  width: 100%;
 }
 
-.distances {
+.dna-amenities-container {
+  position: relative;
+  min-height: 60px;
+}
+
+/* ============================================
+   Loading State Styles
+   ============================================ */
+.dna-loading-state {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  text-align: center;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.dna-loading-state--active {
+  display: flex;
+  opacity: 1;
+  visibility: visible;
+}
+
+.dna-loading-state--hidden {
+  display: none;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.dna-spinner {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 3px solid #f3f3f3;
+  border-top: 3px solid #3498db;
+  border-radius: 50%;
+  animation: dna-spin 1s linear infinite;
+  flex-shrink: 0;
+}
+
+@keyframes dna-spin {
+  0% { 
+    transform: rotate(0deg); 
+  }
+  100% { 
+    transform: rotate(360deg); 
+  }
+}
+
+.dna-loading-text {
+  margin-left: 10px;
+  color: #666;
+  font-size: 14px;
+}
+
+/* ============================================
+   Content Styles
+   ============================================ */
+.dna-amenities-content {
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.dna-amenities-content--visible {
+  display: block;
+  opacity: 1;
+  visibility: visible;
+}
+
+.dna-amenities-content--hidden {
+  display: none;
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* ============================================
+   Error Message Styles
+   ============================================ */
+.dna-error-message {
+  padding: 20px;
+  text-align: center;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.dna-error-message--active {
+  display: block;
+  opacity: 1;
+  visibility: visible;
+}
+
+.dna-error-message--hidden {
+  display: none;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.dna-error-text {
+  color: #dc3545;
+  font-size: 14px;
+  display: inline-block;
+}
+
+/* ============================================
+   Nearby Widget Styles
+   ============================================ */
+.dna-nearby-widget.nearby-widget {
+  padding: 0;
+  margin: 0;
+}
+
+/* ============================================
+   Section Styles
+   ============================================ */
+.dna-section {
+  margin-bottom: 24px;
+}
+
+.dna-section:last-child {
+  margin-bottom: 0;
+}
+
+.dna-section--distances {
+  margin-bottom: 20px;
+}
+
+.dna-section--amenities {
+  margin-top: 20px;
+}
+
+.dna-section-title.amenities-title {
+  margin: 0 0 12px 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #1c2a3a;
+  line-height: 1.4;
+}
+
+/* ============================================
+   Distances List Styles
+   ============================================ */
+.dna-distances-list.distances {
   margin-top: 12px;
   margin-bottom: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
-.distance-item, .amenity-item {
+.dna-distance-item.distance-item {
   display: flex;
   align-items: flex-start;
-  margin-bottom: 8px;
+  margin-bottom: 0;
   font-size: 15px;
   color: #1c2a3a;
+  line-height: 1.5;
+  padding: 4px 0;
 }
 
-.distance-item .directorist-icon-mask,
-.amenity-item .directorist-icon-mask {
-  margin-top: 2px;
+.dna-distance-item .dna-amenity-icon {
+  flex-shrink: 0;
   margin-right: 8px;
+  margin-top: 2px;
+}
+
+.dna-distance-item .dna-amenity-icon .directorist-icon-mask {
   font-size: 18px;
+  line-height: 1;
 }
 
-.amenities-title {
-  margin: 0;
-  font-size: 16px;
-  font-weight: bold;
-  color: #1c2a3a;
+.dna-distance-item .dna-amenity-text {
+  flex: 1;
+  word-wrap: break-word;
 }
 
-.amenities {
+/* ============================================
+   Amenities List Styles
+   ============================================ */
+.dna-amenities-list.amenities {
   margin-top: 12px;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 6px 12px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px 12px;
+}
+
+@media (max-width: 768px) {
+  .dna-amenities-list.amenities {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+}
+
+.dna-amenity-item.amenity-item {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 0;
+  font-size: 15px;
+  color: #1c2a3a;
+  line-height: 1.5;
+  padding: 4px 0;
+}
+
+.dna-amenity-item .dna-amenity-icon {
+  flex-shrink: 0;
+  margin-right: 8px;
+  margin-top: 2px;
+}
+
+.dna-amenity-item .dna-amenity-icon .directorist-icon-mask {
+  font-size: 18px;
+  line-height: 1;
+  margin-top: 0;
+  margin-right: 0;
+}
+
+.dna-amenity-item .dna-amenity-text {
+  flex: 1;
+  word-wrap: break-word;
+}
+
+/* ============================================
+   Amenity Item Base Styles (for both types)
+   ============================================ */
+.dna-amenity-item {
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.dna-amenity-item:hover {
+  opacity: 0.8;
+}
+
+/* ============================================
+   Icon Color Overrides (when enabled)
+   ============================================ */
+.dna-amenity-item .dna-amenity-icon .directorist-icon-mask::after {
+  transition: background-color 0.3s ease;
+}
+
+/* Icon color styles are dynamically injected when amenity_icon_colors is enabled */
+.dna-amenity-icon-colors {
+  display: none;
+}
+
+/* ============================================
+   Responsive Adjustments
+   ============================================ */
+@media (max-width: 480px) {
+  .dna-loading-text {
+    font-size: 13px;
+  }
+  
+  .dna-section-title.amenities-title {
+    font-size: 15px;
+  }
+  
+  .dna-distance-item,
+  .dna-amenity-item {
+    font-size: 14px;
+  }
+  
+  .dna-distance-item .dna-amenity-icon .directorist-icon-mask,
+  .dna-amenity-item .dna-amenity-icon .directorist-icon-mask {
+    font-size: 16px;
+  }
+}
+
+/* ============================================
+   Accessibility Improvements
+   ============================================ */
+.dna-loading-state[aria-hidden="true"],
+.dna-amenities-content[aria-hidden="true"],
+.dna-error-message[aria-hidden="true"] {
+  display: none;
+}
+
+.dna-loading-state[aria-hidden="false"],
+.dna-amenities-content[aria-hidden="false"],
+.dna-error-message[aria-hidden="false"] {
+  display: block;
+}
+
+/* ============================================
+   Print Styles
+   ============================================ */
+@media print {
+  .dna-loading-state,
+  .dna-spinner {
+    display: none;
+  }
+  
+  .dna-amenities-content {
+    display: block !important;
+  }
 }

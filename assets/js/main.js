@@ -13,7 +13,7 @@ jQuery(document).ready(function ($) {
       // Get data attribute and parse JSON
       var amenityDataAttr = $container.attr('data-amenity-args');
       if (!amenityDataAttr) {
-        $loadingState.hide();
+        $loadingState.removeClass('dna-loading-state--active').addClass('dna-loading-state--hidden');
         return;
       }
       
@@ -22,12 +22,12 @@ jQuery(document).ready(function ($) {
         amenityData = JSON.parse(amenityDataAttr);
       } catch (e) {
         console.error('Error parsing amenity data:', e);
-        $loadingState.hide();
+        $loadingState.removeClass('dna-loading-state--active').addClass('dna-loading-state--hidden');
         return;
       }
       
       if (!amenityData || !amenityData.listing_id) {
-        $loadingState.hide();
+        $loadingState.removeClass('dna-loading-state--active').addClass('dna-loading-state--hidden');
         return;
       }
 
@@ -53,11 +53,14 @@ jQuery(document).ready(function ($) {
         success: function(response) {
           if (response.success && response.data) {
             // Hide loading state
-            $loadingState.hide();
+            $loadingState.removeClass('dna-loading-state--active').addClass('dna-loading-state--hidden');
+            
+            // Hide error message if visible
+            $container.find('.dna-error-message').removeClass('dna-error-message--active').addClass('dna-error-message--hidden');
             
             // Insert amenities HTML
             if (response.data.html) {
-              $content.html(response.data.html).show();
+              $content.html(response.data.html).removeClass('dna-amenities-content--hidden').addClass('dna-amenities-content--visible');
             }
             
             // Insert icon colors if available
@@ -66,12 +69,15 @@ jQuery(document).ready(function ($) {
             }
           } else {
             // Handle error
-            $loadingState.html('<span style="color: #dc3545;">' + (response.data && response.data.message ? response.data.message : 'Failed to load amenities') + '</span>');
+            $loadingState.removeClass('dna-loading-state--active').addClass('dna-loading-state--hidden');
+            var errorMessage = response.data && response.data.message ? response.data.message : 'Failed to load amenities';
+            $container.find('.dna-error-message').html('<span class="dna-error-text">' + errorMessage + '</span>').removeClass('dna-error-message--hidden').addClass('dna-error-message--active');
           }
         },
         error: function(xhr, status, error) {
           // Handle error
-          $loadingState.html('<span style="color: #dc3545;">Error loading amenities. Please try again later.</span>');
+          $loadingState.removeClass('dna-loading-state--active').addClass('dna-loading-state--hidden');
+          $container.find('.dna-error-message').html('<span class="dna-error-text">Error loading amenities. Please try again later.</span>').removeClass('dna-error-message--hidden').addClass('dna-error-message--active');
           console.error('Ajax error:', error);
         }
       });

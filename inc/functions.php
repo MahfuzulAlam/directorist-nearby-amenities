@@ -31,79 +31,83 @@ function dna_generate_nearby_amenities( $amenity_args = [] ) {
 
     ob_start();
     ?>
-    <div class="nearby-widget">
+    <div class="dna-nearby-widget nearby-widget">
         <?php if(!empty($distances)): ?>
-        <h4 class="amenities-title"><?php echo $by_distance_title; ?></h4>
-        <div class="distances">
-            <?php foreach ($distances as $type): ?>
-                <?php if( $amenity = dna_get_amenity_by_key($type) ): ?>
-                    <?php
-                        $places = dna_get_nearby_places($lat, $lng, $type, $radius, $apiKey);
-                        $i = 0;
-                        if (!empty($places)) {
-                            foreach ($places as $place) {
-                                if ($i >= $max_amenities) {
-                                    break;
-                                }
-                                $time = dna_get_travel_time($lat, $lng, $place['geometry']['location']['lat'], $place['geometry']['location']['lng'], $mode, $apiKey);
-                    ?>
-                                <div class="distance-item dna-amenity-item <?php echo $amenity['key']; ?>">
-                                    <?php directorist_icon( $amenity['icon'] ); ?>
-                                    <span>
-                                        <?php
-                                            if ($time) {
-                                                // Show label depending on mode
-                                                if ($mode === 'walking') {
-                                                    echo esc_html($time . " walk to " . $place['name']);
-                                                } elseif ($mode === 'driving') {
-                                                    echo esc_html($time . " drive to " . $place['name']);
-                                                } elseif ($mode === 'cycling') {
-                                                    echo esc_html($time . " bike ride to " . $place['name']);
-                                                } elseif ($mode === 'transit') {
-                                                    echo esc_html($time . " transit to " . $place['name']);
+        <div class="dna-section dna-section--distances">
+            <h4 class="dna-section-title amenities-title"><?php echo esc_html($by_distance_title); ?></h4>
+            <div class="dna-distances-list distances">
+                <?php foreach ($distances as $type): ?>
+                    <?php if( $amenity = dna_get_amenity_by_key($type) ): ?>
+                        <?php
+                            $places = dna_get_nearby_places($lat, $lng, $type, $apiKey, $radius);
+                            $i = 0;
+                            if (!empty($places)) {
+                                foreach ($places as $place) {
+                                    if ($i >= $max_amenities) {
+                                        break;
+                                    }
+                                    $time = dna_get_travel_time($lat, $lng, $place['geometry']['location']['lat'], $place['geometry']['location']['lng'], $mode, $apiKey);
+                        ?>
+                                    <div class="dna-distance-item distance-item dna-amenity-item dna-amenity-item--<?php echo esc_attr($amenity['key']); ?>">
+                                        <span class="dna-amenity-icon"><?php directorist_icon( $amenity['icon'] ); ?></span>
+                                        <span class="dna-amenity-text">
+                                            <?php
+                                                if ($time) {
+                                                    // Show label depending on mode
+                                                    if ($mode === 'walking') {
+                                                        echo esc_html($time . " walk to " . $place['name']);
+                                                    } elseif ($mode === 'driving') {
+                                                        echo esc_html($time . " drive to " . $place['name']);
+                                                    } elseif ($mode === 'cycling') {
+                                                        echo esc_html($time . " bike ride to " . $place['name']);
+                                                    } elseif ($mode === 'transit') {
+                                                        echo esc_html($time . " transit to " . $place['name']);
+                                                    } else {
+                                                        echo esc_html($time . " to " . $place['name']);
+                                                    }
                                                 } else {
-                                                    echo esc_html($time . " to " . $place['name']);
+                                                    echo esc_html("Nearby " . ucfirst($type));
                                                 }
-                                            } else {
-                                                echo esc_html("Nearby " . ucfirst($type));
-                                            }
-                                        ?>
-                                    </span>
-                                </div>
-                    <?php
-                                $i++;
+                                            ?>
+                                        </span>
+                                    </div>
+                        <?php
+                                    $i++;
+                                }
                             }
-                        }
-                    ?>
-                <?php endif; ?>
-            <?php endforeach; ?>
+                        ?>
+                    <?php endif; ?>
+                <?php endforeach; ?>
+            </div>
         </div>
         <?php endif; ?>
         <?php if(!empty($amenities)): ?>    
-        <h4 class="amenities-title"><?php echo $nearby_amenities_title; ?></h4>
-        <div class="amenities">
-            <?php foreach ($amenities as $type): ?>
-                <?php if( $amenity = dna_get_amenity_by_key($type) ): ?>
-                    <?php
-                        $places = dna_get_nearby_places($lat, $lng, $type, $radius, $apiKey);
-                        $i = 0;
-                        if (!empty($places)) :
-                            foreach ($places as $place) {
-                                if ($i >= $max_amenities) {
-                                    break;
+        <div class="dna-section dna-section--amenities">
+            <h4 class="dna-section-title amenities-title"><?php echo esc_html($nearby_amenities_title); ?></h4>
+            <div class="dna-amenities-list amenities">
+                <?php foreach ($amenities as $type): ?>
+                    <?php if( $amenity = dna_get_amenity_by_key($type) ): ?>
+                        <?php
+                            $places = dna_get_nearby_places($lat, $lng, $type, $apiKey, $radius);
+                            $i = 0;
+                            if (!empty($places)) :
+                                foreach ($places as $place) {
+                                    if ($i >= $max_amenities) {
+                                        break;
+                                    }
+                                    ?>
+                                    <div class="dna-amenity-item amenity-item dna-amenity-item--<?php echo esc_attr($amenity['key']); ?>">
+                                        <span class="dna-amenity-icon"><?php directorist_icon( $amenity['icon'] ); ?></span>
+                                        <span class="dna-amenity-text"><?php echo esc_html($place['name']); ?></span>
+                                    </div>
+                                    <?php
+                                    $i++;
                                 }
-                                ?>
-                                <div class="amenity-item dna-amenity-item <?php echo $amenity['key']; ?>">
-                                    <?php directorist_icon( $amenity['icon'] ); ?>
-                                    <span><?php echo $place['name']; ?></span>
-                                </div>
-                                <?php
-                                $i++;
-                            }
-                        endif;
-                    ?>
-                <?php endif; ?>
-            <?php endforeach; ?>
+                            endif;
+                        ?>
+                    <?php endif; ?>
+                <?php endforeach; ?>
+            </div>
         </div>
         <?php endif; ?>
     </div>
@@ -112,7 +116,7 @@ function dna_generate_nearby_amenities( $amenity_args = [] ) {
 }
 
 // Function to fetch places from Google Places API
-function dna_get_nearby_places($lat, $lng, $type, $radius = 1000, $apiKey) {
+function dna_get_nearby_places($lat, $lng, $type, $apiKey, $radius = 1000) {
     $url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location={$lat},{$lng}&radius={$radius}&type={$type}&key={$apiKey}";
     $response = file_get_contents($url);
     $data = json_decode($response, true);
@@ -594,9 +598,9 @@ function dna_ajax_load_nearby_amenities() {
     if (isset($_POST['amenity_icon_colors']) && $_POST['amenity_icon_colors'] == 'true') {
         $amenity_types = dna_get_amenity_types_list();
         if (!empty($amenity_types)) {
-            $icon_colors_html = '<style>';
+            $icon_colors_html = '<style class="dna-amenity-icon-colors">';
             foreach ($amenity_types as $amenity) {
-                $icon_colors_html .= '.dna-amenity-item.' . esc_attr($amenity['key']) . ' .directorist-icon-mask::after { background-color: ' . esc_attr($amenity['color']) . ' !important; }';
+                $icon_colors_html .= '.dna-amenity-item--' . esc_attr($amenity['key']) . ' .dna-amenity-icon .directorist-icon-mask::after { background-color: ' . esc_attr($amenity['color']) . ' !important; }';
             }
             $icon_colors_html .= '</style>';
         }
